@@ -1,0 +1,107 @@
+<!-- http://www.flickr.com/services/api/explore/flickr.photos.search -->
+<!-- https://www.flickr.com/services/ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Flickr_api</title>
+</head>
+<body>
+<div> Flickr_api</div>
+<form id="flickr">
+    <input id = 'v' onblur = "ffun(this)" type = "text" value= "上戸彩" />
+    <!-- <input id = 'v' type = "text" value= "上戸彩" /> -->
+    <input id = 'b' type = "Button" value = "検索" />
+</form><br>
+<div id = "flickr_photo"><div id="list" name="nlist"></div></div>
+
+<script type = "text/javascript">
+onload = function(){
+      var x = document.getElementById('b');
+          x.addEventListener('click',function(){
+                   var text = document.getElementById('v').value;
+                   xxxjson(lulu2.call(new link(text)));
+                },false);
+  }
+
+function ffun(val){
+    var text = val.value;
+    xxxjson(lulu2.call(new link(text)));
+  }
+
+function link(text){
+    this.api_url = 'https://api.flickr.com/services/rest/?';
+    this.opt = {method:'flickr.photos.search',
+                api_key:'665f189ad2f511c7c9595aa9a845da03',
+                text: encodeURIComponent(text),
+                sort:'relevance',     // sort:'interestingness-desc',
+                privacy_filter:'public+photos',
+                content_type:'photos+only',
+                per_page:'30',
+                format:'json',
+                nojsoncallback:'1',}
+  }
+
+function lulu2(){
+        var url = '';
+          for(var i in this.opt){
+                url = url + i + '=' + this.opt[i] +'&';
+          }
+        return this.api_url+url;
+  }
+
+function imgurl(json_d){
+      var xx = document.getElementById('list');
+      var oi = document.getElementsByClassName('flickr_img');
+           for(var l = oi.length; l > 0; l--){
+                xx.removeChild(oi[0]);
+             }
+
+      var t = json_d['photos']['photo'];
+      var size = '.jpg';    // var size = '_b.jpg';
+
+      for(var i in t){
+          var url = 'https://farm' + t[i]['farm'] + '.staticflickr.com/' + t[i]['server'] + '/' + t[i]['id'] + '_' + t[i]['secret'] + size;  
+          console.info('imgurl::',url);
+          var b = document.createElement('div');
+              b.setAttribute('class','flickr_img');
+                 for(var inf in t[i]){
+                    b.setAttribute(inf,t[i][inf]);
+                  }
+              b.innerHTML = '<img src="'+ url +'" alt="' + t[i]['title'] +'" title="' + t[i]['title'] +'" />';
+              xx.appendChild(b);
+        }
+     function help1(){
+          // https://www.flickr.com/services/api/misc.urls.html
+          // https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
+          // https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg
+          // https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{o-secret}_o.(jpg|gif|png)
+
+          // farm:4
+          // id:"3042962976"
+          // isfamily:0
+          // isfriend:0
+          // ispublic:1
+          // owner:"28940168@N04"
+          // secret:"bfbbc5bb2e"
+          // server:"3030"
+          // title:"上戸彩"
+      }
+  }
+
+function xxxjson(ulink){
+    var flickr_ajax = new XMLHttpRequest();
+        flickr_ajax.onreadystatechange = function(){
+          if(flickr_ajax.readyState == 4 && flickr_ajax.status == 200 ){
+              imgurl(JSON.parse(flickr_ajax.responseText));
+            }
+          }
+        flickr_ajax.open('GET', ulink, true);
+        flickr_ajax.send(null);
+  }
+
+</script>
+</body>
+</html>
