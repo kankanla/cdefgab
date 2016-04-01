@@ -8,12 +8,47 @@
 </head>
 <body>
 	<div><h3>
-	タレント高部さん不起訴＝コカイン使用などで逮捕―東京地検
+	Z170-DELUXE
 	</h3></div>
-	<script src="http://cdefgab.web.fc2.com/qv2.js" type="text/javascript" charset="utf-8" async defer></script>
-	<input class ="key_word"  a_url="http://amzn.to/1WSmQFx" value="高部あい" style="display:none">
-
+	<script src="http://cdefgab.web.fc2.com/qv5.js" type="text/javascript" charset="utf-8" async defer></script>
+	<input class ="key_word"  c_max = "6" a_url="http://www.asus.com/" value="Z170-DELUXE" style="display:none">
 </body>
 </html>
+
+
+
+
+
+
+
+<script type="text/javascript">
+$_GET('v');
+function $_GET(q){
+    if(location.search.length > 0){
+    	var temp = {};
+        var search = location.search.split('?')[1].split('&');
+     	    for(var i = 0; i < search.length; i++){
+                var para = search[i].split('=');
+                temp[para[0]]=para[1];
+        	}
+
+        if(q && temp[q]){
+        		youfunction(temp[q]);
+                // return temp.q; // NG
+                return temp[q];
+        }else{
+        		console.log(temp);
+                return temp;
+        }
+    }
+}
+
+
+function youfunction(q){
+                var x = document.getElementsByClassName('key_word');
+                x[0].value = q;
+                console.log(x[0].value);
+}
+</script>
 
 
