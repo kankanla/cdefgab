@@ -19,12 +19,11 @@ function help(){
 
   // https://developers.google.com/youtube/js_api_reference#Playback_status
 }
-
+    var debug = false;
     var tag = document.createElement("script");
         tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName("script")[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    var debug = false;
     var player;
     var playlist = document.getElementById("player2").getAttribute("playlistid");
     var videoid = "koNJ1W7gP78";
@@ -57,7 +56,11 @@ function help(){
    
     function onPlayerReady(event) {
             var vol = document.getElementById("player2").getAttribute("defaultVol");
-            event.target.setVolume(vol);
+            if(vol){
+              event.target.setVolume(vol);
+            }else{
+              event.target.setVolume("8");
+            }
             event.target.cuePlaylist({list:playlist});
       }
 
@@ -251,4 +254,52 @@ function help(){
         f_volPlus();
         f_volMinus();
         f_PlaybackRate();
+        page_play();
+        url_play();
     }
+
+function url_play(){
+  if($_GET(location.href,"list")){
+    player.loadPlaylist({list:$_GET(location.href,"list")});
+  }
+}
+
+function page_play(){
+  // http://musicinjp.hateblo.jp/ ページ用
+    var d = document.getElementById("player2");
+        d.setAttribute("mode","shuffle");
+        d.setAttribute("defaultVol","8");
+    var j = document.getElementsByClassName("artist");
+        for (var i = 0 ; i < j.length; i++){
+           j[i].setAttribute("listid",j[i].href);
+           j[i].removeAttribute("href");
+           j[i].addEventListener("click", function(){
+               var listid = $_GET(this.getAttribute("listid"),"list");
+               player.loadPlaylist({list:listid});
+              },false);
+        }
+}
+
+// mousemove
+// click
+// contextmenu
+// dblclick
+
+function $_GET(url,q){
+  if(debug){console.log(url);}
+  if(url.split("?").length > 1){
+      var temp = {};
+        var search = url.split('?')[1].split('&');
+          for(var i = 0; i < search.length; i++){
+                var para = search[i].split('=');
+                temp[para[0]]=para[1];
+          }
+        if(temp[q]){
+            if(debug){console.log(temp[q]);}
+                return temp[q];
+        }else{
+            if(debug){console.log(temp);}
+                return temp;
+        }
+  }
+}

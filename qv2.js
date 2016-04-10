@@ -2,10 +2,10 @@
 function help(){
 	// 下記の内容をプログに貼り付け、
 	// <div><h3>
-	// 上戸彩のオフィシャルサイトです。 ... お知らせ.
+	// タレント高部さん不起訴＝コカイン使用などで逮捕―東京地検
 	// </h3></div>
 	// <script src="http://cdefgab.web.fc2.com/qv2.js" type="text/javascript" charset="utf-8" async defer></script>
-	// <input class ="key_word"  a_url="http://amzn.to/1Rx54Gx" value="上戸彩" style="display:none">
+	// <input class ="key_word"  a_url="http://amzn.to/1WSmQFx" value="高部あい" style="display:none">
 
 }
 
@@ -20,14 +20,10 @@ function start(){
 				x[i].setAttribute('id', get[i].value);
 				get[i].parentNode.insertBefore(x[i], get[i].nextSibling);
 			a_url = get[i].getAttribute('a_url');
-			a_url = 'http://www.amazon.co.jp/s/?_encoding=UTF8&camp=1207&creative=8415&linkCode=shr&tag=ak8-22&_mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&url=search-alias%3Daps&field-keywords=' + encodeURIComponent(get[i].value);
 			xxxjson(lulu2.call(new link(get[i].value)), get[i].value);
 		}
 	}
  }
-
-
-//http://www.amazon.co.jp/s/?_encoding=UTF8&camp=1207&creative=8415&linkCode=shr&tag=ak8-22&_mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&url=search-alias%3Daps&field-keywords=%E9%AB%98%E9%83%A8%E3%81%82%E3%81%84
 
 
 function xxxjson(ulink, q_key){
@@ -42,8 +38,8 @@ function xxxjson(ulink, q_key){
   }
 
 function imgurl(json_d,q_key){
-	console.log(json_d);
-	console.log(q_key);
+	// console.log(json_d);
+	// console.log(q_key);
 	var t = json_d['photos']['photo'];
 	for(var i in t){
 		if(filter(t[i]['id'])){
@@ -51,9 +47,10 @@ function imgurl(json_d,q_key){
 
 	        var b = document.createElement('div');
 	        	b.setAttribute('class','items');
+	        	a_url = 'http://www.amazon.co.jp/s/?_encoding=UTF8&camp=1207&creative=8415&linkCode=shr&tag=ak8-22&_mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&url=search-alias%3Daps&field-keywords=' + encodeURIComponent(q_key);
 	            b.innerHTML = '<a href="'+ a_url + '" title="' + t[i]['title'] + '"><img src="'+ img_url +'" alt="' + t[i]['title'] +'" title="' + t[i]['title'] +'" /></a>';
 	            document.getElementById(q_key).appendChild(b);
-	            console.info('q_div',document.getElementById(q_key));
+	            // console.info('q_div',document.getElementById(q_key));
 	            document.title = t[i]['title'];
 		}
 	}
