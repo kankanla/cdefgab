@@ -1,4 +1,4 @@
-adingoFluct ={};
+// adingoFluct ={};
 
 window.addEventListener('load',start,false);
 
