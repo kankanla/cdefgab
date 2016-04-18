@@ -1,4 +1,4 @@
-// adingoFluct ={};
+adingoFluct ={};
 
 window.addEventListener('load',start,false);
 
@@ -17,6 +17,10 @@ function start(){
 	}else{
 		xxxjson(lulu2.call(new link('女優')));
 	}
+
+	var j = document.getElementById("unitedblades_div");
+	j.parentElement.removeChild(j);
+
  }
 
 function chkidol(q){
