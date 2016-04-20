@@ -9,13 +9,14 @@ function youku_api_help(){
 	// <div id="youku_player_area" style="width:480px;height:400px"></div>
 }
 
-var debug = true;
 // var debug = false;
-window.addEventListener("load", start,false);
+var debug = true;
 adingoFluct ={};
+window.addEventListener("load", start,false);
 
 function start(){
 	ffc2();
+	add_script();
 	var x = document.getElementById("youku_player_key");
 	// youku_ajax(lulu.call(new youku_url(fn_replace(x.getAttribute("youku_keyword")))));
 	
@@ -30,6 +31,14 @@ function start(){
 	
 	ffc2();
 }
+
+function add_script(){
+	var a = document.createElement("script");
+		a.src = "http://player.youku.com/jsapi";
+	var g = document.getElementsByTagName("script")[0];
+		g.parentNode.insertBefore(a, g);
+}
+
 
 function filter(e){
 	// 不要的視頻
