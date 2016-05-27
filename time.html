@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html style="margin: 0px;">
+<head>
+	<title>var t = new Date();</title>
+</head>
+<body style="margin: 0px;">
+<div id = "page_main">
+	<div id = "page_main_a" style="font-size: 600%;"></div>
+	<div id="page_main_b" style="display: flex;font-size: 4000%;">
+		<div id = "page_amin_b_h">h</div>
+	</div>
+	<div id = "page_main_c"></div>
+	<div id = "page_main_d"></div>
+	<div id = "page_main_youtube">
+	// 
+		<script src="http://cdefgab.web.fc2.com/plist.js" type="text/javascript" charset="utf-8" async defer></script>
+		<div id="player2" mode = "shuffle" defaultVol = "3" playlistid = "PLvswSo32Xlu_rUhe-e8pODo-sqyj99zAj"></div>
+		<div id="mute">vol_mute</div>
+		<div id="volPlus">volPlus</div>
+		<div id="volMinus">volMinus</div>
+		<div id="seekTo30">seekTo30</div>
+		<div id="PlaybackRate">PlaybackRate</div>
+  	// 
+	</div>
+</div>
+<script type="text/javascript">
+
+main_style();
+setInterval(ntm, 1000);
+
+function ntm(){
+	var x = new Date();
+		x.getFullYear();
+		x.getMonth()+1;
+		x.getDate();
+	var h = document.getElementById("page_amin_b_h");
+		h.innerHTML = x.toLocaleTimeString();
+	var u = document.getElementById("page_main_a");
+		u.innerHTML = x;
+}
+
+function main_style(){
+	var x = document.getElementById("page_main");
+		x.style.height = window.innerHeight +'px';
+		x.style.width = window.innerWidth + 'px';
+		x.style.backgroundColor = "#81C6E6";
+}
+</script>
+</body>
+</html>
